@@ -1306,7 +1306,7 @@ async def auto_filter(client: Client, msg: Union[Message, CallbackQuery], wait_m
     else:
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
-        wait_msg = await message.reply_text(f"<b>Searching For {search}...</b>", parse_mode=enums.ParseMode.HTML, quote=True)
+        wait_msg = await message.reply_text(f"<b>Searching For Your Query...</b>", parse_mode=enums.ParseMode.HTML, quote=True)
         settings = await get_settings(message.chat.id)
     
     pre = 'filep' if settings['file_secure'] else 'file'

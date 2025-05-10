@@ -67,7 +67,7 @@ async def give_filter(client: Client, message: Message):
 @Client.on_message(filters.private & filters.text & filters.incoming)
 async def pm_text(bot: Client, message: Message):
     glob = await global_filters(bot, message)
-    wait_msg = await message.reply_text(f"<b>Searching For {message.text}...</b>", parse_mode=enums.ParseMode.HTML, quote=True)
+    wait_msg = await message.reply_text(f"<b>Searching For Your Query...</b>", parse_mode=enums.ParseMode.HTML, quote=True)
     await auto_filter(bot, message, wait_msg)
     if glob:
         await glob.delete()

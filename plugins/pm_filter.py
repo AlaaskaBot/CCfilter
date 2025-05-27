@@ -1602,3 +1602,16 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
+
+# Utility function for handling start payloads
+async def filter_query(client, message):
+    glob = await global_filters(client, message)
+    wait_msg = await message.reply_text(
+        f"<b>Searching For Your Query...</b>",
+        parse_mode=enums.ParseMode.HTML,
+        quote=True
+    )
+    await auto_filter(client, message, wait_msg)
+    if glob:
+        await glob.delete()
+        

@@ -270,3 +270,6 @@ async def delallconfirm(client, message):
             quote=True
         )
 
+async def filter_query(query):
+    # Temporary placeholder for testing
+    return query

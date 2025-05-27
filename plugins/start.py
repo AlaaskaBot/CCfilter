@@ -19,6 +19,10 @@ async def start_handler(client: Client, message: Message):
 
 @Client.on_message(filters.command(["link", "links"]) & filters.private)
 async def get_file_link(client: Client, message: Message):
+
+    await message.reply("✅ /links handler was triggered!")  # DEBUG LINE
+    return  # prevent rest of function from running
+    
     if len(message.command) < 2:
         return await message.reply(
             "Please provide a keyword to generate a link.\n\nExample:\n`/link game of thrones`",

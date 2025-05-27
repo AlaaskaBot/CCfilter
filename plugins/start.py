@@ -1,3 +1,4 @@
+
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.pm_filter import filter_query
@@ -13,15 +14,15 @@ async def start_handler(client: Client, message: Message):
 
     await message.reply(
         "Hello! I am your AutoFilter Bot.\n\n"
-        "Use /link <file name> to get a sharable link.",
+        "Use /getlink <file name> to get a sharable link.",
         quote=True
     )
 
-@Client.on_message(filters.command(["link", "links"]) & filters.private)
+@Client.on_message(filters.command(["getlink", "getlinks"]) & filters.private)
 async def get_file_link(client: Client, message: Message):
     if len(message.command) < 2:
         return await message.reply(
-            "Please provide a keyword to generate a link.\n\nExample:\n`/link game of thrones`",
+            "Please provide a keyword to generate a link.\n\nExample:\n`/getlink game of thrones`",
             quote=True
         )
 
@@ -33,7 +34,7 @@ async def get_file_link(client: Client, message: Message):
     await message.reply(
         f"**Here is your link for:** `{query_text}`\n{link}",
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("🔗 Share Link", url=link)]
+            [InlineKeyboardButton("ðŸ”— Share Link", url=link)]
         ]),
         disable_web_page_preview=False,
         quote=True,

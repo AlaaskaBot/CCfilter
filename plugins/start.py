@@ -17,7 +17,7 @@ async def start_handler(client: Client, message: Message):
         quote=True
     )
 
-@Client.on_message(filters.command("link") & filters.private)
+@Client.on_message(filters.command("linkss") & filters.private)
 async def get_file_link(client: Client, message: Message):
     if len(message.command) < 2:
         return await message.reply(

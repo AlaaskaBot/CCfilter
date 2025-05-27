@@ -1,3 +1,4 @@
+
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.pm_filter import filter_query
@@ -19,25 +20,23 @@ async def start_handler(client: Client, message: Message):
 
 @Client.on_message(filters.command(["link", "links"]) & filters.private)
 async def get_file_link(client: Client, message: Message):
-
-    await message.reply("✅ /links handler was triggered!")  # DEBUG LINE
-    return  # prevent rest of function from running
-    
     if len(message.command) < 2:
         return await message.reply(
             "Please provide a keyword to generate a link.\n\nExample:\n`/link game of thrones`",
             quote=True
         )
 
+    query_text = " ".join(message.command[1:]).strip()
     keyword = "-".join(message.command[1:]).lower()
     bot_username = (await client.get_me()).username
     link = f"https://t.me/{bot_username}?start=getfile-{keyword}"
 
     await message.reply(
-        f"Here is your link: [Click Here]({link})",
+        f"**Here is your link for:** `{query_text}`\n{link}",
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("🔗 Share Link", url=link)]
+            [InlineKeyboardButton("ðŸ”— Share Link", url=link)]
         ]),
-        disable_web_page_preview=True,
-        quote=True
+        disable_web_page_preview=False,
+        quote=True,
+        parse_mode="markdown"
     )

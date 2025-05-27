@@ -17,7 +17,7 @@ async def start_handler(client: Client, message: Message):
         quote=True
     )
 
-@Client.on_message(filters.command("linkss") & filters.private)
+@Client.on_message(filters.command(["link", "links"]) & filters.private)
 async def get_file_link(client: Client, message: Message):
     if len(message.command) < 2:
         return await message.reply(
@@ -32,9 +32,8 @@ async def get_file_link(client: Client, message: Message):
     await message.reply(
         f"Here is your link: [Click Here]({link})",
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("🔗 Share Link", url=link)]
+            [InlineKeyboardButton("ðŸ”— Share Link", url=link)]
         ]),
         disable_web_page_preview=True,
         quote=True
     )
-    
